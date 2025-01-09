@@ -1,0 +1,28 @@
+/* screen - homepage */
+
+.homepage {
+  align-items: flex-start;
+  background-color: #ffffff;
+  display: flex;
+  gap: 219px;
+  height: 1080px;
+  padding: 86px 118px;
+  width: 1920px;
+}
+
+.homepage .title {
+  color: var(--black);
+  font-family: var(--font-family-inter-light);
+  font-size: var(--font-size-m);
+  font-weight: 300;
+  letter-spacing: 0;
+  line-height: normal;
+  min-height: 44px;
+  width: 239px;
+}
+
+.homepage .zax {
+  height: 638px;
+  margin-top: 168px;
+  width: 1174px;
+}

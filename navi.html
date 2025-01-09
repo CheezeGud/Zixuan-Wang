@@ -1,0 +1,119 @@
+<style>
+  body {
+    margin: 0;
+    background: #ffffff;
+    display: flex;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+  }
+  .sidebar {
+    width: 20%;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  .sidebar a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 15px;
+    transition: color 0.3s;
+  }
+  .sidebar a:hover {
+    color: rgb(36, 231, 43);
+  }
+  .dropdown {
+    position: relative;
+  }
+  .dropdown-content {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 10px;
+    z-index: 1;
+    text-align: left;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+  .dropdown-content a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    line-height: 1.2;
+    padding: 3px 10px;
+    transition: color 0.3s;
+  }
+  .dropdown-content a:hover {
+    color: rgb(36, 231, 43);
+  }
+  .dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+  }
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  h1 {
+    margin: 0;
+    font-size: 36px;
+    color: #333;
+  }
+  .subtitle {
+    margin: 10px 0 20px;
+    font-size: 20px;
+    color: #666;
+    font-style: italic;
+  }
+  .video-container {
+    width: 90%;
+    max-width: 1000px;
+    position: relative;
+    padding: 56.25% 0 0 0; /* Aspect ratio for responsive video */
+  }
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+<div class="sidebar">
+    <a href="index.html" target="_parent">Zixuan Wang</a>
+    <a href="About.html" target="_parent">About</a>
+    <a href="" target="_parent">Work</a>
+    <div class="dropdown">
+      <a href="#" target="_parent">Camerannihilation</a>
+      <div class="dropdown-content">
+        <a href="Cam04.html" target="_parent">Part4</a>
+        <a href="Cam03.html" target="_parent">Part3</a>
+        <a href="Cam01.html" target="_parent">Part1</a>
+      </div>
+    </div>
+    <a href="WhiteHoleDream.html" target="_parent">Your Oyster</a>
+    <a href="WhiteHoleDream.html" target="_parent">Su Casa</a>
+    <a href="NailWater.html" target="_parent">Nail the Water</a>
+    <a href="Orange Chicken.html" target="_parent">Orange Chicken</a>
+    <a href="WhiteHoleDream.html" target="_parent">Fire Hydrant</a>
+    <a href="WhiteHoleDream.html" target="_parent">White Hole Dream</a>
+    <a href="WhiteHoleDream.html" target="_parent">White Hole Dream</a>
+    <a href="WhiteHoleDream.html" target="_parent">White Hole Dream</a>
+    <a href="WhiteHoleDream.html" target="_parent">White Hole Dream</a>
+    <a href="WhiteHoleDream.html" target="_parent">White Hole Dream</a>
+
+  </div>

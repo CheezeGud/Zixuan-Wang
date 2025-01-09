@@ -1,0 +1,30 @@
+/* screen - frame-1 */
+
+.frame-1 {
+  align-items: center;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 89px;
+  height: 1024px;
+  padding: 75px 0;
+  width: 1440px;
+}
+
+.frame-1 .title {
+  color: var(--black);
+  font-family: var(--font-family-inter);
+  font-size: var(--font-size-m);
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: 2px;
+  min-height: 63px;
+  width: 452px;
+}
+
+.frame-1 .rectangle-1 {
+  background-color: #00000033;
+  height: 720px;
+  width: 1080px;
+}
