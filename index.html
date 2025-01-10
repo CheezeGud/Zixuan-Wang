@@ -4,56 +4,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
-    <style>
-      body {
-        margin: 0;
-        background: #ffffff;
-        font-family: Arial, sans-serif;
-        overflow: hidden;
-        position: relative;
-      }
-      iframe {
-        
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 110%;
-        border: none;
-        z-index: 0; /* Ensure iframe is visible and interactive */
-      }
-    </style>
+    <link rel="stylesheet" href="css/index.css" />
   </head>
   <body>
     <iframe 
+      id="model-iframe" 
       src="https://my.spline.design/untitled-ade6e9891ec986d2f40dca20de19916c/" 
       frameborder="0" 
-      id="interactive-iframe" 
-      title="Spline Design">
+      title="Spline Design"
+      >
     </iframe>
 
-    <script>
-      // Detect double-click events on the main window
-      let doubleClickTimeout;
-      document.addEventListener("click", function (event) {
-        // Check if it's a double-click
-        if (doubleClickTimeout) {
-          clearTimeout(doubleClickTimeout);
-          doubleClickTimeout = null;
-
-          // Perform navigation on double-click
-          window.location.href = "About.html";
-        } else {
-          // Set timeout to detect a double-click
-          doubleClickTimeout = setTimeout(() => {
-            doubleClickTimeout = null;
-          }, 300); // 300ms threshold for detecting double-click
-        }
-      });
-
-      // Allow iframe interactions to propagate naturally
-      const iframe = document.getElementById("interactive-iframe");
-      iframe.style.pointerEvents = "auto";
-    </script>
+    <script src="script/index.js"></script>
   </body>
 </html>
