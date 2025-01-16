@@ -5,16 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
     <link rel="stylesheet" href="css/index.css" />
+    <link rel="shortcut icon" href="#">
   </head>
   <body>
-    <iframe 
-      id="model-iframe" 
-      src="https://my.spline.design/untitled-ade6e9891ec986d2f40dca20de19916c/" 
-      frameborder="0" 
-      title="Spline Design"
-      >
-    </iframe>
-
+    <div class="container">
+      <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.59/build/spline-viewer.js"></script>
+      <spline-viewer loading-anim-type="spinner-small-light" url="https://prod.spline.design/q3EovX2fIFFeP-Km/scene.splinecode"></spline-viewer>
+    </div>
     <script src="script/index.js"></script>
   </body>
 </html>
