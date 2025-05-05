@@ -1,1 +1,174 @@
-Zixuan Wang is a new media artist and filmmaker. In his art practice, he incorporates different media to wander across the boundary between the digital world and the physical world. By adopting digital thinking when creating works, he aims to discover the countless possibilities brought by emerging technologies. Many of his works combine digital elements such as icons and interfaces of the computer system with the actual world.
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About - Zixuan Wang</title>
+  <style>
+    body {
+      margin: 0;
+      background: #fff;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 20px;
+      color: #000;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      background: white;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px 40px;
+      font-weight: 500;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+
+    .navbar.hide {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+
+    .nav-left a {
+      text-decoration: none;
+      color: #111;
+      font-weight: 600;
+      font-size: 42px;
+      font-family: inherit;
+    }
+
+    .nav-right a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #444;
+      transition: color 0.2s ease;
+      font-size: 28px;
+      font-family: inherit;
+    }
+
+    .nav-right a:hover {
+      color: #000;
+    }
+
+    .about-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 40px;
+      margin: 100px auto;
+      padding: 0 50px;
+      max-width: 1550px;
+      box-sizing: border-box;
+      flex-wrap: wrap;
+      margin-left: 0;
+    }
+
+    .about-text {
+      flex: 1 1 400px;
+      font-size: 22px;
+      line-height: 1.8;
+      color: #111;
+      font-weight: 400;
+      margin-left: -20px; /* ✅ 向左扩充一点 */
+    }
+
+    .about-text a {
+      color: #444;
+      text-decoration: underline;
+    }
+
+    .about-text a:hover {
+      color: #000;
+    }
+
+    .spline-box {
+      flex: 0 0 600px;
+      height: 480px;
+      border-radius: 12px;
+      overflow: hidden;
+      clip-path: inset(10px 80px 70px 80px);
+    }
+
+    spline-viewer {
+      width: 100%;
+      height: 100%;
+      background-color: transparent !important;
+    }
+
+    @media (max-width: 768px) {
+      .about-container {
+        flex-direction: column;
+        margin: 60px auto;
+        padding: 0 20px;
+        margin-left: 0;
+      }
+
+      .spline-box {
+        width: 100%;
+        height: 320px;
+        clip-path: inset(50px 50px 50px 50px);
+      }
+
+      .about-text {
+        margin-left: 0; /* ✅ 恢复正常排版 */
+      }
+    }
+  </style>
+
+  <!-- 引入 Spline Viewer -->
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.59/build/spline-viewer.js"></script>
+</head>
+<body>
+
+  <header class="navbar" id="navbar">
+    <div class="nav-left">
+      <a href="index.html">Zixuan Wang</a>
+    </div>
+    <nav class="nav-right">
+      <a href="work.html">work</a>
+      <a href="about.html">about</a>
+    </nav>
+  </header>
+
+  <main class="about-container">
+    <!-- 左侧模型 -->
+    <div class="spline-box">
+      <spline-viewer 
+        url="https://prod.spline.design/q3EovX2fIFFeP-Km/scene.splinecode" 
+        loading-anim-type="spinner-small-light">
+      </spline-viewer>
+    </div>
+
+    <!-- 右侧文字 -->
+    <div class="about-text">
+      <p>Zixuan Wang is a new media artist and game designer based in Chicago, graduating from the School of the Art Institute of Chicago in late 2025. His practice explores the porous boundaries between the digital and physical worlds. By integrating a variety of media and embracing a digitally-native approach to creation, he investigates the expansive possibilities that emerging technologies bring to artistic expression.</p>
+      <p><a href="mailto:zwang65@saic.edu">zwang65@saic.edu</a></p>
+      <p><a href="https://www.instagram.com/djdji0">@djdji0</a></p>
+    </div>
+  </main>
+
+  <script>
+    let lastScrollTop = 0;
+    let timer;
+    const navbar = document.getElementById('navbar');
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (currentScroll > lastScrollTop) {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          navbar.classList.add('hide');
+        }, 2000);
+      } else {
+        navbar.classList.remove('hide');
+      }
+
+      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    });
+  </script>
+
+</body>
+</html>

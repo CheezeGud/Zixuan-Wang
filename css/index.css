@@ -42,13 +42,13 @@ html {
     position: absolute;
     background: green;
     top: calc(296/var(--ovh)*100%);
-    left: calc(172/var(--ovw)*100%);
+    left: calc(252/var(--ovw)*100%);
 }
 
 #header-line-2 {
     position: absolute;
     top: calc(440/var(--ovh)*100%);
-    left: calc(244/var(--ovw)*100%);
+    left: calc(930/var(--ovw)*100%);
 }
 
 #name-line {

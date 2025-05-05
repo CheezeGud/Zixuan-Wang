@@ -1,123 +1,314 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Camerannihilation Part 4</title>
-    <style>
-      body {
-        margin: 0;
-        background: #ffffff;
-        display: flex;
-        height: 100vh;
-        font-family: Arial, sans-serif;
-      }
-      .sidebar {
-        width: 20%;
-        min-width: 200px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 20px;
-        box-sizing: border-box;
-        text-align: center;
-      }
-      .sidebar a {
-        text-decoration: none;
-        color: #333;
-        font-size: 18px;
-        margin-bottom: 15px;
-        transition: color 0.3s;
-      }
-      .sidebar a:hover {
-        color: rgb(36, 231, 43);
-      }
-      .dropdown {
-        position: relative;
-      }
-      .dropdown-content {
-        display: block;
-        opacity: 0;
-        visibility: hidden;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        margin-top: 10px;
-        z-index: 1;
-        text-align: left;
-        transition: opacity 0.3s, visibility 0.3s;
-      }
-      .dropdown-content a {
-        display: block;
-        text-decoration: none;
-        color: #333;
-        font-size: 14px;
-        line-height: 1.2;
-        padding: 3px 10px;
-        transition: color 0.3s;
-      }
-      .dropdown-content a:hover {
-        color: rgb(36, 231, 43);
-      }
-      .dropdown:hover .dropdown-content {
-        opacity: 1;
-        visibility: visible;
-      }
-      .main-content {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-        box-sizing: border-box;
-        text-align: center;
-      }
-      h1 {
-        margin: 0;
-        font-size: 36px;
-        color: #333;
-      }
-      .subtitle {
-        margin: 10px 0 20px;
-        font-size: 20px;
-        color: #666;
-        font-style: italic;
-      }
-      .video-container {
-        width: 90%;
-        max-width: 1000px;
-        position: relative;
-        padding: 56.25% 0 0 0; /* Aspect ratio for responsive video */
-      }
-      .video-container iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-      }
-    </style>
-  </head>
-  <body>
-    <iframe
-          src="navi.html"
-          frameborder="0"
-        ></iframe>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Camera Annihilation</title>
+  <style>
+    body {
+      margin: 0;
+      background: #ffffff;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 18px;
+      color: #000;
+    }
 
-    <!-- Main Content -->
-    <div class="main-content">
-      <h1>Camerannihilation Part 1</h1>
-      <div class="subtitle">Video Essay | 2023</div>
-      <div class="video-container">
+    .navbar {
+      position: sticky;
+      top: 0;
+      background: white;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px 40px;
+      font-weight: 500;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+
+    .navbar.hide {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+
+    .nav-left a {
+      text-decoration: none;
+      color: #111;
+      font-weight: 600;
+      font-size: 40px;
+      font-family: inherit;
+    }
+
+    .nav-right a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #444;
+      transition: color 0.2s ease;
+      font-size: 27px;
+      font-family: inherit;
+    }
+
+    .nav-right a:hover {
+      color: #000;
+    }
+
+    .main-content {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 36px;
+      color: #333;
+      text-align: center;
+    }
+
+    .subtitle {
+      margin: 10px 0 20px;
+      font-size: 20px;
+      color: #666;
+      font-style: italic;
+      text-align: center;
+    }
+
+    .video-container {
+      position: relative;
+      padding-top: 56.25%;
+      height: 0;
+      overflow: hidden;
+      margin-bottom: 30px;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .description {
+      margin-top: 40px;
+      text-align: left;
+      font-size: 17px;
+      line-height: 1.6;
+      color: #444;
+    }
+
+    .image-carousel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 40px;
+      flex-wrap: nowrap;
+    }
+
+    .image-carousel img {
+      max-width: 100%;
+      width: 100%;
+      max-height: 600px;
+      object-fit: contain;
+      border: 1px solid #eee;
+    }
+
+    .carousel-btn {
+      background: none;
+      border: none;
+      font-size: 32px;
+      cursor: pointer;
+      color: #666;
+      transition: color 0.2s ease;
+    }
+
+    .carousel-btn:hover {
+      color: #000;
+    }
+
+    .video-wrapper {
+      max-width: 400px;
+      margin: 40px auto;
+    }
+
+    .drive-video {
+      position: relative;
+      padding-top: 177.78%;
+      height: 0;
+      overflow: hidden;
+    }
+
+    .drive-video iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* CCTV 相机样式 - 右上角 */
+    #cctv {
+      position: fixed;
+      top: 100px;
+      right: 50px;
+      width: 180px;
+      height: auto;
+      transform-origin: right top;
+      transition: transform 0.05s linear;
+      z-index: 2000;
+      pointer-events: none;
+    }
+
+    /* CCTV 相机镜像样式 - 左上角（修复） */
+    #cctv-left {
+      position: fixed;
+      top: 100px;
+      left: -100px;
+      width: 180px;
+      height: auto;
+      transform-origin: right top;
+      transition: transform 0.05s linear;
+      z-index: 2000;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CCTV 摄像头（右） -->
+  <img id="cctv" src="CCTV.png" alt="CCTV Camera">
+
+  <!-- CCTV 摄像头（左，镜像） -->
+  <img id="cctv-left" src="CCTV.png" alt="CCTV Camera Left">
+
+  <!-- 导航栏 -->
+  <header class="navbar" id="navbar">
+    <div class="nav-left">
+      <a href="index.html">Zixuan Wang</a>
+    </div>
+    <nav class="nav-right">
+      <a href="work.html">work</a>
+      <a href="about.html">about</a>
+    </nav>
+  </header>
+
+  <!-- 主体内容 -->
+  <div class="main-content">
+    <h1>Camera Annihilation</h1>
+    <div class="subtitle">Video Essay · 3’ · 2023–2025</div>
+
+    <!-- Vimeo 视频 -->
+    <div class="video-container">
+      <iframe
+        src="https://player.vimeo.com/video/1080977732?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+        title="Camera Annihilation">
+      </iframe>
+    </div>
+
+    <!-- 描述 -->
+    <div class="description">
+      <p>
+        Camera Annihilation is a video essay that interrogates the symbolic and political functions of the camera within contemporary surveillance structures...
+      </p>
+      <p>
+        Presented at the SAIC Spring 2025 Undergraduate Exhibition...
+      </p>
+    </div>
+
+    <!-- 图片轮播 -->
+    <div class="image-carousel">
+      <button class="carousel-btn prev">&#8592;</button>
+      <img id="carousel-image" src="_DSF3342.jpg" alt="Project Image">
+      <button class="carousel-btn next">&#8594;</button>
+    </div>
+
+    <!-- Google Drive 视频 -->
+    <div class="video-wrapper">
+      <div class="drive-video">
         <iframe
-          src="https://player.vimeo.com/video/797200548?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-          frameborder="0"
-          allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
-          title="Camerannihilation 101 Chap 1.mov">
+          src="https://drive.google.com/file/d/1MW5yeu7KIfanwqGqXCai7mXuq6ZJSfqq/preview"
+          allow="autoplay"
+          allowfullscreen>
         </iframe>
       </div>
-      <script src="https://player.vimeo.com/api/player.js"></script>
     </div>
-  </body>
+  </div>
+
+  <!-- 脚本区 -->
+  <script src="https://player.vimeo.com/api/player.js"></script>
+  <script>
+    // 导航栏自动隐藏
+    let lastScrollTop = 0;
+    let timer;
+    const navbar = document.getElementById('navbar');
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      if (currentScroll > lastScrollTop) {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          navbar.classList.add('hide');
+        }, 2000);
+      } else {
+        navbar.classList.remove('hide');
+      }
+      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    });
+
+    // 图片轮播逻辑
+    const images = [
+      "_DSF3315.jpg",
+      "_DSF3330.jpg",
+      "_DSF3362.jpg",
+      "_DSF3342.jpg"
+    ];
+    let currentIndex = 0;
+    const carouselImage = document.getElementById("carousel-image");
+    const prevBtn = document.querySelector(".carousel-btn.prev");
+    const nextBtn = document.querySelector(".carousel-btn.next");
+
+    function updateImage() {
+      carouselImage.src = images[currentIndex];
+    }
+
+    prevBtn.addEventListener("click", () => {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      updateImage();
+    });
+
+    nextBtn.addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % images.length;
+      updateImage();
+    });
+
+    // CCTV 摄像头追踪（右上角）
+    const cctv = document.getElementById("cctv");
+    document.addEventListener("mousemove", (e) => {
+      const rect = cctv.getBoundingClientRect();
+      const originX = rect.right;
+      const originY = rect.top;
+      const deltaX = e.clientX - originX;
+      const deltaY = e.clientY - originY;
+      const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI) + 180;
+      cctv.style.transform = `rotate(${angle}deg)`;
+    });
+
+    // CCTV 左侧镜像摄像头追踪（顺序修复）
+    const cctvLeft = document.getElementById("cctv-left");
+    document.addEventListener("mousemove", (e) => {
+      const rectL = cctvLeft.getBoundingClientRect();
+      const originX = rectL.left;
+      const originY = rectL.top;
+      const deltaX = e.clientX - originX;
+      const deltaY = e.clientY - originY;
+      const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+      cctvLeft.style.transform = `rotate(${angle}deg) scaleX(-1)`;
+    });
+  </script>
+
+</body>
 </html>

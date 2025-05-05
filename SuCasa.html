@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Camerannihilation Part 4</title>
+  <style>
+    body {
+      margin: 0;
+      background: #ffffff;
+      font-family: Arial, sans-serif;
+    }
+
+    .main-content {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 36px;
+      color: #333;
+    }
+
+    .subtitle {
+      margin: 10px 0 20px;
+      font-size: 20px;
+      color: #666;
+      font-style: italic;
+    }
+
+    .video-container {
+      position: relative;
+      padding-top: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-content">
+    <h1>Su Casa</h1>
+    <div class="subtitle">Video Game made in Unity | 2024</div>
+    <div class="video-container">
+      <iframe
+     src="https://player.vimeo.com/video/1081527577?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Camera Annihilation">
+      </iframe>
+    </div>
+  </div>
+  <script src="https://player.vimeo.com/api/player.js"></script>
+</body>
+</html>
