@@ -118,6 +118,16 @@
   </header>
 
   <div class="grid-container" id="work">
+    <!-- 视频 0 -->
+    <div class="grid-item">
+      <a href="InterfaceOverflow.html">
+        <!-- TODO: 用你的预览视频替换 poster/或加上 src -->
+        <video poster="assets/images/OC.png" muted playsinline preload="metadata" class="hover-video"></video>
+      </a>
+      <div class="video-title">Interface Overflow</div>
+      <div class="video-subtitle">New Media Work | 2025</div>
+    </div>
+
     <!-- 视频 1 -->
     <div class="grid-item">
       <a href="Camera Annihilation.html">
@@ -139,7 +149,7 @@
     <!-- 视频 3 -->
     <div class="grid-item">
       <a href="WhiteHoleDream.html">
-        <video src="White-Hole-Dream-gif.mp4" muted playsinline preload="metadata" class="hover-video"></video>
+        <video src="white-hole-dream-gif.mp4" muted playsinline preload="metadata" class="hover-video"></video>
       </a>
       <div class="video-title">White Hole Dream</div>
       <div class="video-subtitle">Video projection on Neon | 2022</div>
@@ -161,11 +171,13 @@
 
       videos.forEach(video => {
         video.addEventListener('mouseenter', () => {
+          if (!video.getAttribute('src')) return;
           video.currentTime = 0;
           video.play();
         });
 
         video.addEventListener('mouseleave', () => {
+          if (!video.getAttribute('src')) return;
           video.pause();
           video.currentTime = 0;
         });
