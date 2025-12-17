@@ -5,25 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Zixuan Wang</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      background: #fff;
+      background: #fafafa;
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-size: 18px;
       color: #000;
+      overflow-x: hidden;
     }
 
     .navbar {
       position: sticky;
       top: 0;
-      background: white;
+      background: rgba(250, 250, 250, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       z-index: 1000;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 25px 40px;
+      padding: 30px 60px;
       font-weight: 500;
       transition: transform 0.5s ease, opacity 0.5s ease;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     }
 
     .navbar.hide {
@@ -35,17 +43,29 @@
       text-decoration: none;
       color: #111;
       font-weight: 600;
-      font-size: 40px;
+      font-size: 38px;
       font-family: inherit;
+      letter-spacing: -0.02em;
+      transition: opacity 0.3s ease;
+    }
+
+    .nav-left a:hover {
+      opacity: 0.6;
+    }
+
+    .nav-right {
+      display: flex;
+      gap: 32px;
     }
 
     .nav-right a {
-      margin-left: 20px;
       text-decoration: none;
-      color: #444;
-      transition: color 0.2s ease;
-      font-size: 27px;
+      color: #555;
+      transition: color 0.3s ease;
+      font-size: 20px;
       font-family: inherit;
+      font-weight: 400;
+      letter-spacing: 0.01em;
     }
 
     .nav-right a:hover {
@@ -55,52 +75,144 @@
     .grid-container {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 50px;
-      width: 100%;
-      margin: 60px 0;
-      padding: 0 50px;
-      box-sizing: border-box;
+      gap: 80px 60px;
+      max-width: 1600px;
+      margin: 100px auto 120px;
+      padding: 0 80px;
     }
 
     .grid-item {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      align-items: center;
+      gap: 18px;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .grid-item:nth-child(1) { animation-delay: 0.1s; }
+    .grid-item:nth-child(2) { animation-delay: 0.2s; }
+    .grid-item:nth-child(3) { animation-delay: 0.3s; }
+    .grid-item:nth-child(4) { animation-delay: 0.4s; }
+    .grid-item:nth-child(5) { animation-delay: 0.5s; }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .grid-item-link {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .grid-item-link > :first-child {
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+      background: #000;
+    }
+
+    .grid-item-link > :first-child::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.3));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+
+    .grid-item-link:hover > :first-child::after {
+      opacity: 1;
     }
 
     .grid-item video {
       width: 100%;
       height: auto;
-      object-fit: contain;
+      object-fit: cover;
       display: block;
+      transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1), filter 0.4s ease;
+      filter: brightness(0.96) saturate(0.95);
+    }
+
+    .grid-item-link:hover video {
+      transform: scale(1.03);
+      filter: brightness(1) saturate(1);
     }
 
     .video-title {
-      font-size: 26px;
+      font-size: 24px;
       color: #111;
-      line-height: 1.5;
-      max-width: 100%;
+      line-height: 1.4;
       font-family: inherit;
-      align-self: flex-start;   /* ✅ 左对齐 */
-      text-align: left;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin: 0;
+      transition: color 0.3s ease;
+    }
+
+    .grid-item:hover .video-title {
+      color: #000;
     }
 
     .video-subtitle {
-      font-size: 16px;
-      color: #888;
-      line-height: 1.4;
+      font-size: 15px;
+      color: #999;
+      line-height: 1.5;
       font-weight: 400;
       font-family: inherit;
-      align-self: flex-start;   /* ✅ 左对齐 */
-      text-align: left;
+      letter-spacing: 0.01em;
+      margin: -6px 0 0;
+    }
+
+    @media (max-width: 1200px) {
+      .grid-container {
+        padding: 0 60px;
+        gap: 60px 50px;
+        margin: 80px auto 100px;
+      }
     }
 
     @media (max-width: 768px) {
+      .navbar {
+        padding: 25px 30px;
+      }
+
+      .nav-left a {
+        font-size: 32px;
+      }
+
+      .nav-right {
+        gap: 20px;
+      }
+
+      .nav-right a {
+        font-size: 18px;
+      }
+
       .grid-container {
         grid-template-columns: 1fr;
-        padding: 0 20px;
-        gap: 30px;
+        padding: 0 30px;
+        gap: 60px;
+        margin: 60px auto 80px;
+      }
+
+      .video-title {
+        font-size: 22px;
+      }
+
+      .video-subtitle {
+        font-size: 14px;
       }
     }
   </style>
@@ -120,47 +232,47 @@
   <div class="grid-container" id="work">
     <!-- 视频 0 -->
     <div class="grid-item">
-      <a href="InterfaceOverflow.html">
+      <a href="InterfaceOverflow.html" class="grid-item-link">
         <video src="world space UI.mov" muted playsinline preload="metadata" class="hover-video"></video>
+        <div class="video-title">Interface Overflow</div>
+        <div class="video-subtitle">Video Game made by Unreal Engine 5 | 2025</div>
       </a>
-      <div class="video-title">Interface Overflow</div>
-      <div class="video-subtitle">Video Game made by Unreal Engine 5 | 2025</div>
     </div>
 
     <!-- 视频 1 -->
     <div class="grid-item">
-      <a href="Camera Annihilation.html">
+      <a href="Camera Annihilation.html" class="grid-item-link">
         <video src="bfa-show-gif.mp4" muted playsinline preload="metadata" class="hover-video"></video>
+        <div class="video-title">Camera Annihilation</div>
+        <div class="video-subtitle">Video Essay | 2025</div>
       </a>
-      <div class="video-title">Camera Annihilation</div>
-      <div class="video-subtitle">Video Essay | 2025</div>
     </div>
 
     <!-- 视频 2 -->
     <div class="grid-item">
-      <a href="SuCasa.html">
+      <a href="SuCasa.html" class="grid-item-link">
         <video src="Su-Casa-gif.mp4" muted playsinline preload="metadata" class="hover-video"></video>
+        <div class="video-title">Su Casa</div>
+        <div class="video-subtitle">Video Game made in Unity | 2024</div>
       </a>
-      <div class="video-title">Su Casa</div>
-      <div class="video-subtitle">Video Game made in Unity | 2024</div>
     </div>
 
     <!-- 视频 3 -->
     <div class="grid-item">
-      <a href="WhiteHoleDream.html">
+      <a href="WhiteHoleDream.html" class="grid-item-link">
         <video src="white-hole-dream-gif.mp4" muted playsinline preload="metadata" class="hover-video"></video>
+        <div class="video-title">White Hole Dream</div>
+        <div class="video-subtitle">Video projection on Neon | 2022</div>
       </a>
-      <div class="video-title">White Hole Dream</div>
-      <div class="video-subtitle">Video projection on Neon | 2022</div>
     </div>
 
     <!-- 视频 4 -->
     <div class="grid-item">
-      <a href="NailWater.html">
+      <a href="NailWater.html" class="grid-item-link">
         <video src="Nail-the-Water.mp4" muted playsinline preload="metadata" class="hover-video"></video>
+        <div class="video-title">Nail the Water</div>
+        <div class="video-subtitle">Digital Video | 2020</div>
       </a>
-      <div class="video-title">Nail the Water</div>
-      <div class="video-subtitle">Digital Video | 2020</div>
     </div>
   </div>
 
