@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Interface Overflow</title>
+  <title>Pacifica</title>
   <style>
     body {
       margin: 0;
@@ -91,22 +91,6 @@
       border: none;
     }
 
-    .video-placeholder {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #777;
-      font-size: 16px;
-      padding: 20px;
-      box-sizing: border-box;
-      text-align: center;
-    }
-
     .description {
       margin-top: 40px;
       text-align: left;
@@ -131,31 +115,33 @@
 
   <!-- 主内容 -->
   <div class="main-content">
-    <h1>Interface Overflow</h1>
-    <div class="subtitle">Video Game made by Unreal Engine 5 | 2025</div>
+    <h1>Pacifica</h1>
+    <div class="subtitle">New Media Work | 2025</div>
 
-    <!-- 媒体区域 -->
+    <!-- 媒体区域 - 请替换为你的 Vimeo/YouTube 视频链接 -->
     <div class="video-container" id="video-container">
-      <iframe
-        src="https://player.vimeo.com/video/1146828226?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-        title="Interface Overflow">
-      </iframe>
+      <!--
+        <iframe
+          src="https://player.vimeo.com/video/XXXXXXXXX?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+          title="Pacifica">
+        </iframe>
+      -->
+      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; color: #999;">
+        Video embed placeholder - add your Vimeo link
+      </div>
     </div>
 
     <div class="description">
       <p>
-        Interface Overflow is a work-in-progress game that turns UI, an element often treated as invisible background support, into the main protagonist. Instead of using UI simply to explain a world, the world itself is built from interfaces. The screen becomes the space you navigate, and the interface actively shapes what you notice, believe, and do.
-      </p>
-      <p>
-        So far, the project includes only the first level, designed as a starting point for a larger series. It introduces the core idea by pushing the player into a space of saturation and interference, where navigation and decision-making are constantly redirected by the interface. Upcoming levels will extend these experiments, such as printing the player's keyboard inputs directly onto the screen. Updates and new builds will be posted on my website.
+        (Project description for Pacifica goes here.)
       </p>
     </div>
   </div>
 
   <script src="https://player.vimeo.com/api/player.js"></script>
   <script>
-    // 可选：滚动时隐藏导航栏（与其他作品页保持一致）
+    // 可选：滚动时隐藏导航栏
     let lastScrollTop = 0;
     let timer;
     const navbar = document.getElementById('navbar');

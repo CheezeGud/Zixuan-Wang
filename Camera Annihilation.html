@@ -187,11 +187,11 @@
   <!-- 导航栏 -->
   <header class="navbar" id="navbar">
     <div class="nav-left">
-      <a href="index.html">Zixuan Wang</a>
+      <a href="index">Zixuan Wang</a>
     </div>
     <nav class="nav-right">
-      <a href="work.html">work</a>
-      <a href="about.html">about</a>
+      <a href="work">work</a>
+      <a href="about">about</a>
     </nav>
   </header>
 
@@ -307,6 +307,18 @@
       const deltaY = e.clientY - originY;
       const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
       cctvLeft.style.transform = `rotate(${angle}deg) scaleX(-1)`;
+    });
+
+    // Auto-append .html to internal links without extensions
+    document.addEventListener('click', function(e) {
+      const target = e.target.closest('a');
+      if (!target) return;
+      
+      const href = target.getAttribute('href');
+      if (href && !href.includes('://') && !href.includes('.') && !href.startsWith('#') && !href.startsWith('mailto:')) {
+        e.preventDefault();
+        window.location.href = href + '.html';
+      }
     });
   </script>
 
