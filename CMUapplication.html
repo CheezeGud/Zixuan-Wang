@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CMU Application - Zixuan Wang</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #000;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* 顶部导航栏 */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      font-weight: 500;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+
+    .navbar.hide {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+
+    .nav-left a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      font-size: 24px;
+      font-family: inherit;
+      transition: opacity 0.3s ease;
+    }
+
+    .nav-left a:hover {
+      opacity: 0.7;
+    }
+
+    .nav-right {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-right a {
+      text-decoration: none;
+      color: #ccc;
+      transition: color 0.3s ease;
+      font-size: 18px;
+      font-family: inherit;
+    }
+
+    .nav-right a:hover {
+      color: #fff;
+    }
+
+    /* 图片容器 */
+    .portfolio-container {
+      width: 100%;
+      padding-top: 60px;
+    }
+
+    .portfolio-page {
+      width: 100%;
+      display: block;
+      margin: 0;
+      padding: 0;
+    }
+
+    .portfolio-page img {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* 移动端优化 */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 15px 20px;
+      }
+
+      .nav-left a {
+        font-size: 20px;
+      }
+
+      .nav-right {
+        gap: 15px;
+      }
+
+      .nav-right a {
+        font-size: 16px;
+      }
+
+      .portfolio-container {
+        padding-top: 50px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 顶部导航栏 -->
+  <header class="navbar" id="navbar">
+    <div class="nav-left">
+      <a href="index">Zixuan Wang</a>
+    </div>
+    <nav class="nav-right">
+      <a href="work">work</a>
+      <a href="about">about</a>
+    </nav>
+  </header>
+
+  <!-- 作品集图片 -->
+  <div class="portfolio-container">
+    <div class="portfolio-page"><img src="Portfolio_Zixuan_Wang/Portfolio_Zixuan_Wang.001.jpeg" alt="Portfolio Page 1"></div>
+    <div class="portfolio-page"><img src="Portfolio_Zixuan_Wang/Portfolio_Zixuan_Wang.002.jpeg" alt="Portfolio Page 2"></div>
+    <div class="portfolio-page"><img src="Portfolio_Zixuan_Wang/Portfolio_Zixuan_Wang.003.jpeg" alt="Portfolio Page 3"></div>
+    <div class="portfolio-page"><img src="Portfolio_Zixuan_Wang/Portfolio_Zixuan_Wang.004.jpeg" alt="Portfolio Page 4"></div>
+    <div class="portfolio-page"><img src="Portfolio_Zixuan_Wang/Portfolio_Zixuan_Wang.005.jpeg" alt="Portfolio Page 5"></div>
+    <div class="portfolio-page"><img src="Portfolio_Zixuan_Wang/Portfolio_Zixuan_Wang.006.jpeg" alt="Portfolio Page 6"></div>
+    <div class="portfolio-page"><img src="Portfolio_Zixuan_Wang/Portfolio_Zixuan_Wang.007.jpeg" alt="Portfolio Page 7"></div>
+    <div class="portfolio-page"><img src="Portfolio_Zixuan_Wang/Portfolio_Zixuan_Wang.008.jpeg" alt="Portfolio Page 8"></div>
+    <div class="portfolio-page"><img src="Portfolio_Zixuan_Wang/Portfolio_Zixuan_Wang.009.jpeg" alt="Portfolio Page 9"></div>
+    <div class="portfolio-page"><img src="Portfolio_Zixuan_Wang/Portfolio_Zixuan_Wang.010.jpeg" alt="Portfolio Page 10"></div>
+    <div class="portfolio-page"><img src="Portfolio_Zixuan_Wang/Portfolio_Zixuan_Wang.011.jpeg" alt="Portfolio Page 11"></div>
+    <div class="portfolio-page"><img src="Portfolio_Zixuan_Wang/Portfolio_Zixuan_Wang.012.jpeg" alt="Portfolio Page 12"></div>
+    <div class="portfolio-page"><img src="Portfolio_Zixuan_Wang/Portfolio_Zixuan_Wang.013.jpeg" alt="Portfolio Page 13"></div>
+    <div class="portfolio-page"><img src="Portfolio_Zixuan_Wang/Portfolio_Zixuan_Wang.014.jpeg" alt="Portfolio Page 14"></div>
+    <div class="portfolio-page"><img src="Portfolio_Zixuan_Wang/Portfolio_Zixuan_Wang.015.jpeg" alt="Portfolio Page 15"></div>
+    <div class="portfolio-page"><img src="Portfolio_Zixuan_Wang/Portfolio_Zixuan_Wang.016.jpeg" alt="Portfolio Page 16"></div>
+    <div class="portfolio-page"><img src="Portfolio_Zixuan_Wang/Portfolio_Zixuan_Wang.017.jpeg" alt="Portfolio Page 17"></div>
+  </div>
+
+  <script>
+    // 滚动时隐藏导航栏
+    let lastScrollTop = 0;
+    let timer;
+    const navbar = document.getElementById('navbar');
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      if (currentScroll > lastScrollTop && currentScroll > 100) {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          navbar.classList.add('hide');
+        }, 2000);
+      } else {
+        navbar.classList.remove('hide');
+      }
+      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    });
+
+    // Auto-append .html to internal links without extensions
+    document.addEventListener('click', function(e) {
+      const target = e.target.closest('a');
+      if (!target) return;
+      
+      const href = target.getAttribute('href');
+      if (href && !href.includes('://') && !href.includes('.') && !href.startsWith('#') && !href.startsWith('mailto:')) {
+        e.preventDefault();
+        window.location.href = href + '.html';
+      }
+    });
+  </script>
+
+</body>
+</html>
