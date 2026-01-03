@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CMU Application Portfolio - Zixuan Wang</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #000;
+      color: #fff;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      transition: transform 0.5s ease;
+    }
+
+    .navbar.hide {
+      transform: translateY(-100%);
+    }
+
+    .nav-left a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      font-size: 24px;
+      transition: opacity 0.3s;
+    }
+
+    .nav-left a:hover {
+      opacity: 0.7;
+    }
+
+    .nav-right {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-right a {
+      text-decoration: none;
+      color: #ccc;
+      font-size: 18px;
+      transition: color 0.3s;
+    }
+
+    .nav-right a:hover {
+      color: #fff;
+    }
+
+    .page {
+      min-height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 100px 100px 60px;
+    }
+
+    /* P1, P6, P9, P11: Large centered image with footer */
+    .hero-page {
+      justify-content: flex-end;
+      padding-bottom: 0;
+    }
+
+    .hero-page img {
+      width: 75%;
+      max-width: 900px;
+      height: auto;
+      margin-bottom: 0;
+    }
+
+    .hero-page .video-wrapper {
+      width: 90%;
+      max-width: 1200px;
+      position: relative;
+      padding-top: 56.25%;
+      margin-bottom: 0;
+    }
+
+    .hero-page .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .hero-page .header-title {
+      text-align: center;
+      font-size: 27px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      color: #ddd;
+      margin-bottom: 50px;
+    }
+
+    .hero-page .footer {
+      text-align: center;
+      padding: 30px 0;
+      font-size: 15px;
+      letter-spacing: 0.3px;
+      color: #ccc;
+    }
+
+    /* P2, P10: Text + Two images + Link */
+    .text-images-page {
+      justify-content: flex-start;
+      gap: 50px;
+    }
+
+    .text-images-page .text {
+      width: 90%;
+      max-width: 1200px;
+      text-align: left;
+      font-size: 16px;
+      line-height: 1.8;
+      color: #ddd;
+    }
+
+    .text-images-page .images {
+      display: flex;
+      gap: 30px;
+      width: 90%;
+      max-width: 1200px;
+    }
+
+    .text-images-page .images img {
+      width: 50%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .text-images-page .link {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 13px;
+    }
+
+    .text-images-page .link a {
+      color: #888;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .text-images-page .link a:hover {
+      color: #fff;
+    }
+
+    /* P3: Left tall image + Right title */
+    .split-title-page {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .split-title-page .left-img-stack {
+      width: 45%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-left: 175px;
+    }
+
+    .split-title-page .left-img-stack img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .split-title-page .left-img {
+      width: 45%;
+      height: auto;
+      max-height: 80vh;
+      object-fit: contain;
+    }
+
+    .split-title-page .right-text {
+      width: 45%;
+      text-align: right;
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      line-height: 1.4;
+      margin-right: 160px;
+    }
+
+    /* P4: Three-image collage */
+    .collage-page {
+      justify-content: center;
+      gap: 30px;
+      align-items: flex-start;
+      padding-left: 180px;
+    }
+
+    .collage-page .header {
+      width: 100%;
+      max-width: 1100px;
+      text-align: left;
+      font-size: 15px;
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+
+    .collage-page .grid {
+      display: flex;
+      gap: 25px;
+      width: 100%;
+      max-width: 1100px;
+      align-items: center;
+    }
+
+    .collage-page .left {
+      width: 50%;
+    }
+
+    .collage-page .left img {
+      width: 100%;
+      height: auto;
+    }
+
+    .collage-page .right {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .collage-page .right img {
+      width: 150%;
+      height: auto;
+    }
+
+    .collage-page img {
+      width: 100%;
+      height: auto;
+    }
+
+    /* P5: Text + Left large + Right small stack */
+    .text-split-images {
+      justify-content: flex-start;
+      gap: 40px;
+    }
+
+    .text-split-images .text {
+      max-width: 1100px;
+      text-align: left;
+      font-size: 15px;
+      line-height: 1.8;
+      color: #ddd;
+    }
+
+    .text-split-images .images {
+      display: flex;
+      gap: 30px;
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    .text-split-images .left {
+      width: 60%;
+    }
+
+    .text-split-images .right {
+      width: 40%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .text-split-images img {
+      width: 100%;
+      height: auto;
+    }
+
+    /* P7: Pure text page */
+    .text-page {
+      justify-content: center;
+      padding: 100px 120px;
+    }
+
+    .text-page .content {
+      max-width: 950px;
+      text-align: left;
+      font-size: 15px;
+      line-height: 1.9;
+      color: #ddd;
+    }
+
+    .text-page .image-gallery {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 40px;
+      max-width: 950px;
+    }
+
+    .text-page .image-gallery img {
+      width: 25%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .text-page .content p {
+      margin-bottom: 22px;
+    }
+
+    .text-page .link {
+      margin-top: 40px;
+      font-size: 13px;
+    }
+
+    .text-page .link a {
+      color: #888;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .text-page .link a:hover {
+      color: #fff;
+    }
+
+    /* P8: Left title + Right 2x2 grid */
+    .title-grid-page {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 80px;
+    }
+
+    .title-grid-page .left-text {
+      width: 35%;
+      text-align: left;
+      font-size: 26px;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      line-height: 1.4;
+    }
+
+    .title-grid-page .right-grid {
+      width: 60%;
+    }
+
+    .title-grid-page .right-grid img {
+      width: 100%;
+      height: auto;
+    }
+
+    /* P12: Text + Two images (no link) */
+    .text-images-only {
+      justify-content: flex-start;
+      gap: 50px;
+    }
+
+    .text-images-only .text {
+      max-width: 1100px;
+      text-align: left;
+      font-size: 15px;
+      line-height: 1.8;
+      color: #ddd;
+    }
+
+    .text-images-only .images {
+      display: flex;
+      gap: 30px;
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    .text-images-only .images img {
+      width: 50%;
+      height: auto;
+    }
+
+    /* P13: Title + Image layout + Bottom text */
+    .titled-layout {
+      justify-content: flex-start;
+      gap: 35px;
+    }
+
+    .titled-layout .title {
+      text-align: center;
+      font-size: 18px;
+      color: #ccc;
+      margin-bottom: 15px;
+    }
+
+    .titled-layout .images {
+      display: flex;
+      gap: 30px;
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    .titled-layout .left {
+      width: 65%;
+    }
+
+    .titled-layout .right {
+      width: 35%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .titled-layout img {
+      width: 100%;
+      height: auto;
+    }
+
+    .titled-layout .text {
+      max-width: 1100px;
+      text-align: left;
+      font-size: 14px;
+      line-height: 1.8;
+      color: #bbb;
+      margin-top: 15px;
+    }
+
+    /* P14: Title right + PDF embed */
+    .titled-vertical {
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .titled-vertical .title {
+      width: 100%;
+      max-width: 1100px;
+      text-align: right;
+      font-size: 15px;
+      color: #ccc;
+      margin-bottom: 15px;
+    }
+    .titled-vertical .pdf-container {
+      width: 90%;
+      max-width: 1100px;
+      height: 80vh;
+    }
+
+    .titled-vertical .pdf-container embed,
+    .titled-vertical .pdf-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .titled-vertical .images {
+      display: flex;
+      gap: 30px;
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    .titled-vertical .left {
+      width: 65%;
+    }
+
+    .titled-vertical .right {
+      width: 35%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .titled-vertical img {
+      width: 100%;
+      height: auto;
+    }
+
+    /* P15: Top image + Bottom text */
+    .top-image-text {
+      justify-content: flex-start;
+      gap: 45px;
+    }
+
+    .top-image-text img {
+      width: 100%;
+      max-width: 1100px;
+      height: auto;
+    }
+
+    .top-image-text .text {
+      max-width: 1100px;
+      text-align: left;
+      font-size: 15px;
+      line-height: 1.8;
+      color: #ddd;
+    }
+
+    /* P16: Left vertical image + Right title and text */
+    .two-column {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 70px;
+    }
+
+    .two-column .left-img {
+      width: 45%;
+      height: auto;
+    }
+
+    .two-column .right-content {
+      width: 50%;
+      text-align: left;
+    }
+
+    .two-column .title {
+      font-size: 17px;
+      margin-bottom: 30px;
+      font-weight: 300;
+      color: #ccc;
+    }
+
+    .two-column .text {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #bbb;
+    }
+
+    /* P17: Large centered with footer and link */
+    .hero-with-link {
+      justify-content: flex-end;
+      padding-bottom: 0;
+    }
+
+    .hero-with-link img {
+      width: 65%;
+      max-width: 850px;
+      height: auto;
+      margin-bottom: 0;
+    }
+
+    .hero-with-link .video-wrapper {
+      width: 90%;
+      max-width: 1200px;
+      position: relative;
+      padding-top: 56.25%;
+      margin-bottom: 0;
+    }
+
+    .hero-with-link .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .hero-with-link .footer-info {
+      text-align: center;
+      padding: 30px 0;
+    }
+
+    .hero-with-link .footer-text {
+      font-size: 15px;
+      letter-spacing: 0.3px;
+      color: #ccc;
+      margin-bottom: 10px;
+    }
+
+    .hero-with-link .link {
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .hero-with-link .link a {
+      color: #888;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .hero-with-link .link a:hover {
+      color: #fff;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 15px 20px;
+      }
+
+      .page {
+        padding: 80px 30px 40px;
+      }
+
+      .split-title-page,
+      .title-grid-page,
+      .two-column,
+      .titled-layout .images,
+      .titled-vertical .images,
+      .text-split-images .images {
+        flex-direction: column;
+      }
+
+      .split-title-page .left-img,
+      .split-title-page .right-text,
+      .title-grid-page .left-text,
+      .title-grid-page .right-grid,
+      .two-column .left-img,
+      .two-column .right-content,
+      .titled-layout .left,
+      .titled-layout .right,
+      .titled-vertical .left,
+      .titled-vertical .right,
+      .text-split-images .left,
+      .text-split-images .right {
+        width: 100%;
+      }
+
+      .split-title-page .right-text {
+        text-align: left;
+        margin-top: 30px;
+      }
+
+      .collage-page .grid,
+      .text-images-page .images,
+      .text-images-only .images {
+        flex-direction: column;
+      }
+
+      .collage-page .left,
+      .collage-page .right,
+      .text-images-page .images img,
+      .text-images-only .images img {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar" id="navbar">
+    <div class="nav-left">
+      <a href="index">Zixuan Wang</a>
+    </div>
+    <nav class="nav-right">
+      <a href="work">work</a>
+      <a href="about">about</a>
+    </nav>
+  </header>
+
+  <!-- P1: Interface Overflow -->
+  <section class="page hero-page">
+    <div class="header-title">Portfolio for ETC Application</div>
+    <div class="video-wrapper">
+      <iframe
+        src="https://player.vimeo.com/video/1146828226?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+        title="Interface Overflow">
+      </iframe>
+    </div>
+    <div class="footer">Interface Overflow, 2025, Variable, Video Game made by Unreal Engine 5</div>
+  </section>
+
+  <!-- P2: Interface Overflow Description -->
+  <section class="page text-images-page">
+    <div class="text">
+      <p>Interface Overflow is a work-in-progress game that turns UI, an element often treated as invisible background support, into the main protagonist. Instead of using UI simply to explain a world, the world itself is built from interfaces. The screen becomes the space you navigate, and the interface actively shapes what you notice, believe, and do.</p>
+      <p>So far, the project includes only the first level, designed as a starting point for a larger series. It introduces the core idea by pushing the player into a space of saturation and interference, where navigation and decision-making are constantly redirected by the interface. Upcoming levels will extend these experiments, such as printing the player's keyboard inputs directly onto the screen.</p>
+    </div>
+    <div class="images">
+      <img src="Interface Overflow/HighresScreenshot00005.png" alt="Screenshot 1">
+      <img src="Interface Overflow/HighresScreenshot00006.png" alt="Screenshot 2">
+    </div>
+    <div class="link">
+      <a href="InterfaceOverflow">Link: zixuanwang.art/InterfaceOverflow</a>
+    </div>
+  </section>
+
+  <!-- P3: Blueprints -->
+  <section class="page split-title-page">
+    <div class="left-img-stack">
+      <img src="Interface Overflow/Screenshot 2025-11-17 201849.png" alt="Blueprint 1">
+      <img src="Interface Overflow/Screenshot 2025-11-16 204301.png" alt="Blueprint 2">
+      <img src="Interface Overflow/Screenshot 2025-11-16 204021.png" alt="Blueprint 3">
+    </div>
+    <div class="right-text">Interface Overflow Blueprints Samples</div>
+  </section>
+
+  <!-- P4: Pacifica -->
+  <section class="page collage-page">
+    <div class="header">Pacifica, 2025, Variable, Virtual Experience made by Unreal Engine 5</div>
+    <div class="grid">
+      <img src="Pacifica/HighresScreenshot00001.png" alt="Pacifica" class="left">
+      <div class="right">
+        <img src="Pacifica/HighresScreenshot00002.png" alt="Scene 1">
+        <img src="Pacifica/HighresScreenshot00000.png" alt="Scene 2">
+      </div>
+    </div>
+  </section>
+
+  <!-- P5: Pacifica Description -->
+  <section class="page text-split-images">
+    <div class="text">
+      <p>One morning in Pacifica, I had an offline encounter with an RC elder. Using generative imagery, 3D modeling, and interactive design, I transformed this unrecorded moment into a synthesized memory—a virtual experience that preserves what was never documented.</p>
+    </div>
+    <div class="images">
+      <img src="Pacifica/Screenshot 2025-11-23 at 18.28.29.png" alt="Interface" class="left">
+      <div class="right">
+        <img src="Pacifica/Screenshot 2025-11-26 at 06.10.39.png" alt="Blender">
+        <img src="Pacifica/Screenshot 2025-11-26 at 02.25.13.png" alt="UE">
+      </div>
+    </div>
+  </section>
+
+  <!-- P6: Camera Annihilation -->
+  <section class="page hero-page">
+    <div class="video-wrapper">
+      <iframe
+        src="https://player.vimeo.com/video/1080977732?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+        title="Camera Annihilation">
+      </iframe>
+    </div>
+    <div class="footer">Camera Annihilation, 2025, Variable, Video Essay</div>
+  </section>
+
+  <!-- P7: Camera Annihilation Description -->
+  <section class="page text-page">
+    <div class="image-gallery">
+      <img src="camera/Screenshot 2025-11-26 at 03.09.42.png" alt="Camera 1">
+      <img src="camera/Screenshot 2025-11-26 at 03.10.38.png" alt="Camera 2">
+      <img src="camera/Screenshot 2025-11-26 at 03.24.46.png" alt="Camera 3">
+      <img src="camera/Screenshot 2025-11-26 at 03.25.37.png" alt="Camera 4">
+    </div>
+    <div class="content">
+      <p>Camera Annihilation is a video essay that interrogates the symbolic and political functions of the camera within contemporary surveillance structures. By dissecting the act of image-making itself, the work proposes a provocative thesis: anything can become a camera under systems of power and observation. Through performative gestures and critical montage, it reflects on how cameras do not merely record reality—they shape it, discipline it, and, ultimately, weaponize it.</p>
+      <p>The piece critiques the entangled relationship between visibility, control, and technology in the age of ubiquitous surveillance. It employs game sequences and glitch aesthetics to procedurally "destroy" surveillance cameras, transforming viewers from passive observers into active agents of resistance, further complicating the power dynamics between viewer, subject, and machine.</p>
+      <p>Presented at the SAIC Spring 2025 Undergraduate Exhibition.</p>
+      <div class="link">
+        <a href="Camera Annihilation">Link: zixuanwang.art/Camera%20Annihilation</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- P8: Installation Views -->
+  <section class="page title-grid-page">
+    <div class="left-text">Camera Annihilation<br>Installation Views</div>
+    <div class="right-grid">
+      <img src="camera/Camera Annihilation Installation Views.jpg" alt="Installation View">
+    </div>
+  </section>
+
+  <!-- P9: Su Casa -->
+  <section class="page hero-page">
+    <div class="video-wrapper">
+      <iframe
+        src="https://player.vimeo.com/video/1081527577?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+        title="Su Casa">
+      </iframe>
+    </div>
+    <div class="footer">Su Casa, 2024, Variable, Video Game made by Unity</div>
+  </section>
+
+  <!-- P10: Su Casa Description -->
+  <section class="page text-images-page">
+    <div class="text">
+      <p>Su Casa is a cozy decorating game made in Unity that turns domestic comfort into an absurd spectacle of excess. Pressing the space bar causes random furniture to fall continuously from the sky, and the player can use the mouse to drag every object anywhere in the room. What begins as playful home styling quickly becomes a chaotic pileup, as the space is buried under an unstoppable stream of commodities and the floor transforms into something closer to a ruin. By removing limits from the game's internal economy, Su Casa makes greed visible and physical, showing how unchecked accumulation overwhelms care, order, and the idea of "home."</p>
+    </div>
+    <div class="images">
+      <img src="sucasa/Screenshot 2025-12-16 at 05.38.14.png" alt="Scene">
+      <img src="sucasa/Screenshot 2025-12-16 at 05.39.43.png" alt="Chaos">
+    </div>
+    <div class="link">
+      <a href="SuCasa">Link: zixuanwang.art/SuCasa</a>
+    </div>
+  </section>
+
+  <!-- P11: Your Oyster -->
+  <section class="page hero-page">
+    <div class="video-wrapper">
+      <iframe
+        src="https://player.vimeo.com/video/1151152170?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+        title="Your Oyster">
+      </iframe>
+    </div>
+    <div class="footer">Your Oyster, 2024, Variable, Video Game made by Unity</div>
+  </section>
+
+  <!-- P12: Your Oyster Description -->
+  <section class="page text-images-only">
+    <div class="text">
+      <p>Your Oyster is a Unity-made game that invites the player to witness a miniature planet across vast stretches of time. Pressing Q and E shifts the terrain and lighting, transforming the environment in sweeping cycles that feel like centuries passing in seconds. Pressing G switches into a god's-eye view, widening the perspective and emphasizing the distance between the observer and the world below. Rather than controlling a character, the player manipulates conditions and watches landscapes rise and erode, shadows stretch and collapse, and the planet reorganize itself through time. Your Oyster frames worldbuilding as observation instead of conquest, turning geological change into something tangible, playable, and quietly uncanny.</p>
+    </div>
+    <div class="images">
+      <img src="your oyster/Screenshot 2025-12-16 at 05.44.03.png" alt="Scene 1">
+      <img src="your oyster/Screenshot 2025-12-16 at 05.44.30.png" alt="Scene 2">
+    </div>
+  </section>
+
+  <!-- P13: Watching 3D Movie -->
+  <section class="page titled-layout">
+    <div class="title">Watching 3D Movie Without Glasses, 2023</div>
+    <div class="images">
+      <img src="your oyster/landscape 01.jpg" alt="Main" class="left">
+      <div class="right">
+        <img src="your oyster/landscape 02.jpg" alt="Detail 1">
+        <img src="your oyster/landscape 03.jpg" alt="Detail 2">
+      </div>
+    </div>
+    <div class="text">
+      <p>Watching 3D Movie Without Glasses is my first piece made in Unreal Engine. It started from a simple thought: in reality we see the world with two eyes, but in most games everything is rendered through a single camera. In Unreal Engine, I placed two cameras offset along the y-axis, captured both views, and composited them into one image, creating a misaligned, faux-3D, glitch-like effect that feels like watching a 3D movie without wearing the glasses.</p>
+    </div>
+  </section>
+
+  <!-- P14: The Landfill -->
+  <section class="page titled-vertical">
+    <div class="title">The landfill, 2023. Digital, variable</div>
+    <img src="your oyster/portfolio 2025 miemie.jpg" alt="The Landfill">
+  </section>
+
+  <!-- P15: Technical Details -->
+  <section class="page top-image-text">
+    <img src="your oyster/portfolio 2025 miemie1.jpg" alt="Technical Overview">
+    <div class="text">
+      <p>Landfill is a real-time Unreal Engine project inspired by a 2010s-era game asset that built convincing foliage from two intersecting planes with 2D textures, producing a glitchy yet strangely complete form. To extend that surreal language, I generated foliage textures with DALL·E 2 and introduced oversized fruit as unexpected digital monuments, using a list of fruits sourced from ChatGPT as the basis for the models. The AI images were brought into the pipeline through Blender and assembled in Unreal, where Blueprints automate key steps such as cutting out backgrounds, shaping the planes, and creating translucency.</p>
+    </div>
+  </section>
+
+  <!-- P16: Orange Chicken -->
+  <section class="page two-column">
+    <img src="your oyster/002 Orange Chicken.png" alt="Orange Chicken" class="left-img">
+    <div class="right-content">
+      <div class="title">Orange Chicken, 2022, Variable, AI generated image</div>
+      <div class="text">
+        <p>Orange Chicken is an image generated with the DALL·E 2 model from the simple prompt "orange chicken." Instead of producing a straightforward food photograph, the model returned an absurd hybrid that resembles Americanized Chinese cuisine, a chicken's head fused onto an orange. The image becomes a visual metaphor for a dish that is culturally unstable. Orange chicken is not a common food in China, yet in the United States it is marketed as a signature "Chinese" favorite. In this work, the AI's literal misunderstanding mirrors a broader process of translation and invention, where a name hardens into an identity and a commercial fantasy takes on the appearance of authenticity. The resulting creature points to a culture that is manufactured rather than inherited, and to an object that feels real precisely because it is repeatedly generated, circulated, and consumed.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- P17: White Hole Dream -->
+  <section class="page hero-with-link">
+    <div class="video-wrapper">
+      <iframe
+        src="https://player.vimeo.com/video/797102002?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+        title="White Hole Dream">
+      </iframe>
+    </div>
+    <div class="footer-info">
+      <div class="footer-text">White Hole Dream, 2022, Neon light, Digital Video, 15" x 10" x 10"</div>
+      <div class="link">
+        <a href="WhiteHoleDream">Link: zixuanwang.art/WhiteHoleDream</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    let lastScrollTop = 0;
+    let timer;
+    const navbar = document.getElementById('navbar');
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      if (currentScroll > lastScrollTop && currentScroll > 100) {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          navbar.classList.add('hide');
+        }, 2000);
+      } else {
+        navbar.classList.remove('hide');
+      }
+      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    });
+
+    document.addEventListener('click', function(e) {
+      const target = e.target.closest('a');
+      if (!target) return;
+      
+      const href = target.getAttribute('href');
+      if (href && !href.includes('://') && !href.includes('.') && !href.startsWith('#') && !href.startsWith('mailto:')) {
+        e.preventDefault();
+        window.location.href = href + '.html';
+      }
+    });
+  </script>
+
+</body>
+</html>
